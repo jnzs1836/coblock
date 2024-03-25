@@ -44,12 +44,14 @@ python manage.py loaddata data.json
 After openning the page, you need to define the goal structure and task setting (you can also use the prepared data). To create a new structure, please access the page `localhost:3000/creator`. To create a new task setting, please access the page `localhost:3000/task-config`. After completing the task definition, you will be prompted to a new page with the task id. In this page, you can start the task there.
 
 In the page, there will be the goal structure shown in 3D and in text:
-![Goal](./static/images/goal.png "Goal component in the task page")
+<!-- ![Goal](./static/images/goal.png "Goal component in the task page") -->
+<img src="./static/images/goal.png" style="width: 50%;">
+
 
 Then you can execute the actions of placing, breaking, communicating and waiting the page.
-![Interaction](./static/images/interaction.png "Interaction component in the task page")
-
-Your partner LLM agent will automatically work with you if you set API key properly in the previous step. For more detail tutorial, please refer to [tutorial](./static/user-tutorial.pdf).
+<!-- ![Interaction](./static/images/interaction.png "Interaction component in the task page") -->
+<img src="./static/images/interaction.png" style="width: 50%;">
+In the environment, the user's goal is to complete a target structure with an AI partner. you and your AI partner will perform the actions turn-by-turn. In each turn, you can only perform three actions. Your partner LLM agent will automatically work with you if you set API key properly in the previous step. For more detail tutorial, please refer to [tutorial](./static/user-tutorial.pdf).
 
 ## Code Structure
 ```
