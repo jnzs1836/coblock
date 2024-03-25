@@ -1,4 +1,4 @@
-# Co Blocks
+# CoBlock
 *Your Co-Workers Matter: Evaluating Collaborative Capabilities of Language Models in Blocks World [[PDF]](./static/paper-coblock.pdf)*
 
 *Guande Wu, Chen Zhao, Claudio Silva, He He*
