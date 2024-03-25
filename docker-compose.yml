@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+  backend:
+    build: ./minechat_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./minechat_backend:/app
+    depends_on:
+      - redis  # Add this line
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=minechat
+      - DB_USER=postgres
+      - DB_PASSWORD=mysecretpassword
+      - SUPERUSER_PASSWORD=superuserpassword
+      - SUPERUSER_NAME=admin05
+      - REDIS_HOST=redis
+      - OPENAI_API_KEY=YOUR_API_KEY
+    networks:
+      - my_network
+
+  frontend:
+    build: 
+      context: ./web-portal
+      dockerfile: ./Dockerfile.${ENVIRONMENT:-dev}
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web-portal:/app
+    depends_on:
+      - backend
+    networks:
+      - my_network
+    environment:
+      - BACKEND_HOST=backend
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: postgres
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - my_network
+  
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: ./Dockerfile.${ENVIRONMENT:-dev}
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - my_network
+  redis:
+    image: "redis:alpine"
+    networks:
+      - my_network
+      
+volumes:
+  db_data:
+
+networks:
+  my_network:
+    driver: bridge

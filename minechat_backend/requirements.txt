@@ -1,0 +1,12 @@
+Django==3.2.18
+django-cors-headers==3.14.0
+django-filter==23.1
+djangorestframework==3.14.0
+aiohttp==3.8.4
+openai==0.27.8
+psycopg2-binary==2.8.3
+django-extensions==3.1.3
+channels==3.0.5
+channels-redis==3.3.1
+redis
+numpy==1.21.5

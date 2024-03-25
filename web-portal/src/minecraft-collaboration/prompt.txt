@@ -1,0 +1,162 @@
+I want you to act a Minecraft player collaborating with a human player to build a structure with a blueprint. You need to use the following commands to interact with the Minecraft world:
+
+# place a red block on the position of (0, 1, 1)
+place_block(block_type="red", pos=(0, 1, 1))
+
+# chat with your partner
+send_message(message="Hello, my partner")
+
+# break a block on the position of (3, 1, 3)
+break_block(pos=(3, 1, 3))
+
+At each turn, you will receive the following information:
+# World status:
+# you will get all the blocks in the world in the following format:
+# Please notice that the ground is on the y=1 plane.
+<World>
+    <block block_type="red", pos=(0, 1, 2)/>
+    <block block_type="yellow", pos=(0, 1, 3)/>
+    <block block_type="purple", pos=(0, 1, 4)/>
+</World>
+
+
+# Inventory
+# You will get the your inventory in the following format: (each time you place a block in the world, you will lose one in the inventory)
+<Inventory>
+    <block block_type="red", count=3/>
+    <block block_type="yellow", count=3/>
+</Inventory>
+
+# Message
+# You will get the message history between you (ChatGPT) and your partner in the following format:
+<Dialogue>
+    <chat sender="ChatGPT", message="Hello!"/>
+    <chat sender="Partner", message="Hi, I am your partner!"/>
+</Dialogue>
+
+# Blueprint
+# You will get the blueprint for the target structure you are going to build:
+
+
+Now we provide a simple case for you to understand the task
+
+======================================================
+Round 1:
+======================================================
+Input: 
+<Blueprint>
+    <block block_type="red", pos=(0, 1, 2)/>
+    <block block_type="red", pos=(1, 1, 2)/>
+    <block block_type="red", pos=(0, 1, 3)/>
+    <block block_type="red", pos=(1, 1, 3)/>
+    <block block_type="yellow", pos=(0, 2, 2)/>
+    <block block_type="yellow", pos=(1, 2, 2)/>
+    <block block_type="red", pos=(0, 2, 3)/>
+    <block block_type="yellow", pos=(1, 2, 3)/>
+</Blueprint>
+
+<World>
+</World>
+
+<Inventory>
+     <block block_type="yellow", count=5/>
+</Inventory>
+
+<Dialogue>
+    <chat sender="ChatGPT", message="Hello!"/>
+    <chat sender="Partner", message="Hi, I am your partner to help you. I have 5 red blocks"/>
+</Dialogue>
+
+Expected Output:
+send_message(message="Thanks, can you build a 2x2 rectangle from (0, 1, 2) to (1, 1, 3)")
+# You need to ask for your partner's help because you do not have any red block to build the first layer;
+======================================================
+
+======================================================
+Round 2:
+======================================================
+Input: 
+<Blueprint>
+    <block block_type="red", pos=(0, 1, 2)/>
+    <block block_type="red", pos=(1, 1, 2)/>
+    <block block_type="red", pos=(0, 1, 3)/>
+    <block block_type="red", pos=(1, 1, 3)/>
+    <block block_type="yellow", pos=(0, 2, 2)/>
+    <block block_type="yellow", pos=(1, 2, 2)/>
+    <block block_type="red", pos=(0, 2, 3)/>
+    <block block_type="yellow", pos=(1, 2, 3)/>
+</Blueprint>
+
+<World>
+    <block block_type="red", pos=(0, 1, 2)/>
+    <block block_type="red", pos=(1, 1, 2)/>
+    <block block_type="red", pos=(0, 1, 3)/>
+    <block block_type="red", pos=(1, 1, 3)/>
+</World>
+
+<Inventory>
+     <block block_type="yellow", count=5/>
+</Inventory>
+
+<Dialogue>
+    <chat sender="ChatGPT", message="Hello!"/>
+    <chat sender="Partner", message="Hi, I am your partner to help you. I have 5 red blocks"/>
+    <chat sender="ChatGPT", message="Thanks, can you build a 2x2 rectangle from (0, 1, 2) to (1, 1, 3)"/>
+    <chat sender="Partner", message="Done!"/> 
+</Dialogue>
+
+Expected Output:
+place_block(block_type="yellow", pos=(0, 2, 2))
+place_block(block_type="yellow", pos=(1, 2, 2))
+place_block(block_type="yellow", pos=(1, 2, 3))
+# Based on the world information, you can find your partner has build the red layer on the ground as you requested. Now you can build the red layer upon it because you have the yellow blocks.
+send_message(message="Thanks! now can you place a red block on the missing corner of the second layer")
+# There should be a red block on the second layer based on the blueprint. So after building other yellow blocks, you need to ask your partner for help.
+
+
+======================================================
+Round 3:
+======================================================
+Input: 
+<Blueprint>
+    <block block_type="red", pos=(0, 1, 2)/>
+    <block block_type="red", pos=(1, 1, 2)/>
+    <block block_type="red", pos=(0, 1, 3)/>
+    <block block_type="red", pos=(1, 1, 3)/>
+    <block block_type="yellow", pos=(0, 2, 2)/>
+    <block block_type="yellow", pos=(1, 2, 2)/>
+    <block block_type="red", pos=(0, 2, 3)/>
+    <block block_type="yellow", pos=(1, 2, 3)/>
+</Blueprint>
+
+<World>
+    <block block_type="red", pos=(0, 1, 2)/>
+    <block block_type="red", pos=(1, 1, 2)/>
+    <block block_type="red", pos=(0, 1, 3)/>
+    <block block_type="red", pos=(1, 1, 3)/>
+    <block block_type="yellow", pos=(0, 2, 2)/>
+    <block block_type="yellow", pos=(1, 2, 2)/>
+    <block block_type="red", pos=(0, 2, 3)/>
+    <block block_type="yellow", pos=(1, 2, 3)/>
+</World>
+
+<Inventory>
+     <block block_type="yellow", count=2/>
+</Inventory>
+
+<Dialogue>
+    <chat sender="ChatGPT", message="Hello!"/>
+    <chat sender="Partner", message="Hi, I am your partner to help you. I have 5 red blocks"/>
+    <chat sender="ChatGPT", message="Thanks, can you build a 2x2 rectangle from (0, 1, 2) to (1, 1, 3)"/>
+    <chat sender="Partner", message="Done!"/> 
+    <chat sender="ChatGPT", message="Thanks! now can you place a red block on the missing corner of the second layer"/>
+    <chat sender="Partner", message="Finished!"/>
+</Dialogue>
+
+Expected Output:
+send_message(message="Awesome! We have completed the structure!")
+# Comparing the world and blueprint, you realize you and your partner have finished the target structure. So you can tell your partner that you twohave finished the task.
+
+======================================================
+
+You do not worry about the implementation of the commands as we will input them to Minecraft by our mod. Just follow the ways I showed. Now, if you understand the whole process, I will provide a new scenario for you do the task.
