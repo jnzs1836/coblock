@@ -15,6 +15,24 @@ CoBlock is a multi-agent platform designed to explore the intricacies of multi-a
 Within the interface, both human and LLM agents are endowed with the ability to manipulate the environment by placing or breaking blocks. They can also communicate with each other to strategize and work collaboratively towards shared objectives. 
 Contrary to traditional human-LLM collaborative setups, such as the ChatGPT, CoBlock envisions a scenario where agents are positioned as equals. Each agent possesses individual goals and an inventory, necessitating a mutual exchange of assistance to successfully accomplish their respective tasks. This setting provides deeper insights into cooperative behavior, negotiation strategies, and the division of labor between artificial intelligence and human operators.
 
+## FAQ
+**Q: What is the block world?**
+
+*A: The block world refers to the simulated world consisting of the block structures. In the world, the agent typically can place the new block, break the existing block and walk. The most famous example is Minecraft. CoBlock is a simplified version of Minecraft developed for evaluating human-LLM collaboration. We run the whole system in web so we can easily conduct crowd-sourcing experiments.*
+
+**Q: Why do not we just use Minecraft?**
+
+*A: Minecraft is indeed an excellent platform for researching human-LLM collaboration. However, it requires installation on a PC, and ensuring that crowdsourcing workers have access to the software on their computers can be challenging. In contrast, CoBlock is implemented as a webpage, offering superior accessibility.*
+
+**Q: What is the difference between CoBlock and other human-LLM collaboration platforms?**
+
+*A: CoBlock distinguishes itself by treating human and LLM agents as equals. Envisioning a future where LLM agents serve as company representatives, they will collaborate with counterparts from other firms. In this scenario, LLM agents are not merely assistants but entities with their own objectives, capable of seeking human assistance.*
+
+**Q: How do we evaluate the collaboration result**
+
+*A: We define a series of metrics including the success rate, task time and workload balance to evaluate the collaboration result. Please look into our paper for more details.*
+
+
 
 ## Installation
 We recommend using docker-compose to deploy CoBlock system. You need to first install [docker](https://www.docker.com) and [docker-compose](https://docs.docker.com/compose/). 
@@ -60,6 +78,10 @@ In the environment, the user's goal is to complete a target structure with an AI
 ./minechat_backend # Code for the back-end server
 ```
 If you want to contribute to the system or develope on our codebase, please follow the coding schema shown in the code files. You can add new page in `./web-portal` and create new API in `./minechat_backend`.
+
+- Adding New Pages to ./web-portal: This directory houses our web portal's frontend components. We use Typescript and React. Also, we use [MUI](https://mui.com) to style our components. When introducing new pages, it's essential to integrate seamlessly with the existing structure and follow the design patterns and frameworks already in place. 
+- Creating New APIs in ./minechat_backend: The backend, written in django and django-restful. When adding new APIs, please follow RESTful principles conventions. Our system uses Postgresql by default but you can change database in Django config.
+
 
 ## Dataset
 Our experiment results are available in [Google Drive](https://drive.google.com/file/d/1QW48oK4twXl50RVpTkH5sPRUVkCxKOpo/view?usp=share_link). But we recommend you to open page `localhost:3000/replay/[EXP_ID]` to see the visualized process.
