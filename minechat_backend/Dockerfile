@@ -35,11 +35,11 @@ EXPOSE 8000
 
 COPY . .
 # Copy the entrypoint script into the container
-COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /app/docker-entrypoint.sh
 # COPY ./scripts/create_superuser.py /setup.py
-RUN chmod +x /docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
 
 # Set the entrypoint to the script
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 # Start the Django server
 # CMD ["pythonz", "manage.py", "runserver", "0.0.0.0:8000"]
