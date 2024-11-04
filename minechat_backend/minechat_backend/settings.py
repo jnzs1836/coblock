@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ldl8#!j7h@ondhh8pjr41vxd4+skmxlf500*u%!1#9193ldx6q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'backend', 'localhost', 'blocks.gdwu.xyz', 'blocks2.gdwu.xyz', 'blocks3.gdwu.xyz', 'blocks4.gdwu.xyz', 'blocks5.gdwu.xyz'] # this is the host that Docker uses to run application
+ALLOWED_HOSTS = ['0.0.0.0', 'backend', 'localhost', 'blocks.gdwu.xyz', 'blocks2.gdwu.xyz', 'blocks3.gdwu.xyz', 'blocks4.gdwu.xyz', 'blocks5.gdwu.xyz', os.getenv('HOSTNAME_VAR')] # this is the host that Docker uses to run application
 
 # Application definition
 

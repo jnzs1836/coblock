@@ -20,6 +20,7 @@ services:
       - SUPERUSER_NAME=admin05
       - REDIS_HOST=redis
       - OPENAI_API_KEY=YOUR_API_KEY
+      - HOSTNAME_VAR=YOUR_SERVER_ADDRESS
     networks:
       - my_network
 
@@ -29,8 +30,6 @@ services:
       dockerfile: ./Dockerfile.${ENVIRONMENT:-dev}
     ports:
       - "3000:3000"
-    volumes:
-      - ./web-portal:/app
     depends_on:
       - backend
     networks:
@@ -59,6 +58,9 @@ services:
       - frontend
     networks:
       - my_network
+    environment:
+      - HOSTNAME_VAR=172.24.113.182
+
   redis:
     image: "redis:alpine"
     networks:

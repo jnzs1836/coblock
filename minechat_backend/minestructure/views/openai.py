@@ -42,6 +42,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import requests
 import json
+import os
 
 # Note: you need to be using OpenAI Python v0.27.0 for the code below to work
 
